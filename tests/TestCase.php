@@ -2,10 +2,11 @@
 
 namespace guivic\LaravelAsaas\Tests;
 
-use guivic\LaravelAsaas\LaravelAsaasServiceProvider;
+use Dotenv\Dotenv;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use guivic\LaravelAsaas\LaravelAsaasServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -31,8 +32,11 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set("asaas.api_key", "9f06223db7ec7db3e6d14e60161ecde56b5189bc44e9f6ef7cccf9438e829d60");
-        $app['config']->set("asaas.enviroment", "homologacao");
+        $dotenv = Dotenv::createImmutable(__DIR__, '../.env.testing');
+        $dotenv->load();
+
+        $app['config']->set("asaas.api_key", env("ASAAS_API_KEY"));
+        $app['config']->set("asaas.enviroment", env("ASAAS_ENVIROMENT", "homologacao"));
     }
 
     protected function setUpDataBase()

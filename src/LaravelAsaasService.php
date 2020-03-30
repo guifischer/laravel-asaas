@@ -44,7 +44,7 @@ class LaravelAsaasService
         $response = $this->httpClient->request('GET', $this->url . $path, [
             "headers" => $this->getHeaders()
         ]);
-        return $response->getBody()->getContents();
+        return json_decode($response->getBody()->getContents());
     }
 
     protected function post($path, $data) {
@@ -52,7 +52,7 @@ class LaravelAsaasService
             "headers" => $this->getHeaders(),
             "body" => $data
         ]);
-        return $response->getBody()->getContents();
+        return json_decode($response->getBody()->getContents());
     }
 
     public function addClient(array $clientData)
