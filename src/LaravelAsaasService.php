@@ -59,25 +59,25 @@ class LaravelAsaasService
     {
 
         $response = $this->post('/customers', json_encode($clientData));
-        dd($response);
+        return $response;
     }
 
     public function listSpecificClient(string $id)
     {
         $response = $this->get('/customers/'.$id);
-        dd($response);
+        return $response;
     }
 
     public function addSubscription(array $subscriptionData)
     {
         $response = $this->post('/subscriptions', json_encode($subscriptionData));
-        dd($response);
+        return $response;
     }
 
     public function addSpecificSubscription(string $id)
     {
         $response = $this->get('/subscriptions/'.$id);
-        dd($response);
+        return $response;
     }
 
     static function webhook(Request $request) {
