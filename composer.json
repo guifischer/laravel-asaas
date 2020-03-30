@@ -1,0 +1,38 @@
+{
+    "name": "guivic/laravel-asaas",
+    "description": "Laravel Asaas API package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Guilherme Alexandre Fischer",
+            "email": "guilherme@gfischer.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.1",
+        "ext-curl": "*",
+        "softr/asaas-php-sdk": "1.0",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "guivic\\LaravelAsaas\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "guivic\\LaravelAsaas\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "guivic\\LaravelAsaas\\LaravelAsaasServiceProvider"
+            ]
+        }
+    }
+}
