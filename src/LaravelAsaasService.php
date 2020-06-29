@@ -68,9 +68,21 @@ class LaravelAsaasService
         return $response;
     }
 
+    public function getInstallments(string $id)
+    {
+        $response = $this->get('/payments?installment='.$id);
+        return $response;
+    }
+
     public function addSubscription(array $subscriptionData)
     {
         $response = $this->post('/subscriptions', json_encode($subscriptionData));
+        return $response;
+    }
+
+    public function addPayment(array $subscriptionData)
+    {
+        $response = $this->post('/payments', json_encode($subscriptionData));
         return $response;
     }
 
