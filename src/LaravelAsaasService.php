@@ -34,9 +34,9 @@ class LaravelAsaasService
     protected function getHeaders()
     {
         return [
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
-                'access_token' => config("asaas.api_key")
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'access_token' => config("asaas.api_key")
         ];
     }
 
@@ -51,6 +51,13 @@ class LaravelAsaasService
         $response = $this->httpClient->request('POST', $this->url . $path, [
             "headers" => $this->getHeaders(),
             "body" => $data
+        ]);
+        return json_decode($response->getBody()->getContents());
+    }
+
+    protected function delete($path) {
+        $response = $this->httpClient->request('DELETE', $this->url . $path, [
+            "headers" => $this->getHeaders()
         ]);
         return json_decode($response->getBody()->getContents());
     }
@@ -80,6 +87,18 @@ class LaravelAsaasService
         return $response;
     }
 
+    public function editSubscription(string $id, array $subscriptionData)
+    {
+        $response = $this->post('/subscriptions/'.$id, json_encode($subscriptionData));
+        return $response;
+    }
+
+    public function cancelSubscription(string $id)
+    {
+        $response = $this->delete('/subscriptions/'.$id);
+        return $response;
+    }
+
     public function addPayment(array $subscriptionData)
     {
         $response = $this->post('/payments', json_encode($subscriptionData));
@@ -95,4 +114,5 @@ class LaravelAsaasService
     static function webhook(Request $request) {
         return [];
     }
+
 }
