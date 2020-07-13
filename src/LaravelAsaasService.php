@@ -104,6 +104,12 @@ class LaravelAsaasService
         $response = $this->post('/payments', json_encode($subscriptionData));
         return $response;
     }
+    
+    public function getPayment(string $id)
+    {
+        $response = $this->get('/payments/'.$id);
+        return $response;
+    }
 
     public function addSpecificSubscription(string $id)
     {
